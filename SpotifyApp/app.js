@@ -15,7 +15,11 @@ var config = require('./config.js')
 var spotifyApi = new SpotifyWebApi(config);
 
 app.get('/', function (req, res) {
-    res.render('index');
+//    res.render('index');
+    res.render('index', {
+                    songs: null,
+                    error: null
+                });
 })
 
 let request = require('request');
@@ -28,11 +32,9 @@ app.post('/', function (req, res) {
         .clientCredentialsGrant()
         .then(function (data) {
 
-            //gets your access token so you can actually get into the API
             spotifyApi.setAccessToken(data.body['access_token']);
 
 
-            //searches for a track in the spotify database w a keyword from the horoscope
             return spotifyApi.searchTracks(artist);
         })
         .then(function (data) {
@@ -43,17 +45,14 @@ app.post('/', function (req, res) {
 
             request(artist, function (err, response, body) {
 
-
-
-
-                let songs = `Your song by ${artist} is  ${data.body.tracks.items[0].name}.Here is the link to it: ${data.body.tracks.items[0].external_urls.spotify} `;
+                let songs = `Your song by ${artist} is  ${data.body.tracks.items[0].name}. Here is the link to it: ${data.body.tracks.items[0].external_urls.spotify} `;
                 console.log(songs);
 
                 res.render('index', {
                     songs: songs,
                     error: null
                 });
-                console.log(songs);
+
 
 
             })
@@ -64,6 +63,6 @@ app.post('/', function (req, res) {
 
 
 
-app.listen(3000, function () {
-    console.log('Example app listening on port 3000!')
+app.listen(4000, function () {
+    console.log('Example app listening on port 4000!')
 })
