@@ -1,8 +1,8 @@
-# Spotify Web App
+# Spotify Web App w Login
 
 ## About
 
-This app takes in user data (an Artists name) and returns a song and the link to that song.
+This app asks for a username and passord and takes in user data (an Artists name) and returns a song and the link to that song.
 
 
 It was created with Node.js, Express, and EJS
