@@ -2,7 +2,6 @@ var fs = require('fs');
 var data = fs.readFileSync('login.json');
 var login = JSON.parse(data);
 
-
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
@@ -82,7 +81,6 @@ app.post('/app/:username', function (req, res) {
             })
         })
 })
-
 
 app.listen(4000, function () {
     console.log('Example app listening on port 4000!')
